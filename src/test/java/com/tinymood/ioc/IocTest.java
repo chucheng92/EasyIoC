@@ -1,9 +1,25 @@
 package com.tinymood.ioc;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+
+/**
+ * IoC容器测试
+ * @author 哓哓
+ *
+ */
 public class IocTest {
 	private static Container container = new SimpleContainer();
 	
-	public static void baseTest(){
+	@BeforeClass
+	public static void start() {
+		System.out.println("测试开始");
+	}
+	
+	@Test
+	public void baseTest(){
 		container.registerBean(Lol.class);
 		// 初始化注入
 		container.initWired();
@@ -12,7 +28,8 @@ public class IocTest {
 		lol.work();
 	}
 	
-	public static void iocClassTest() {
+	@Test
+	public void iocClassTest() {
 		container.registerBean(Lol2.class);
         // 初始化注入
         container.initWired();
@@ -21,7 +38,8 @@ public class IocTest {
         lol.work();
 	}
 	
-	public static void iocNameTest(){
+	@Test
+	public void iocNameTest(){
         container.registerBean("face", new FaceService2());
         container.registerBean(Lol3.class);
         // 初始化注入
@@ -31,9 +49,8 @@ public class IocTest {
         lol.work();
     }
 	
-	public static void main(String[] args) {
-		baseTest();
-		iocClassTest();
-		iocNameTest();
+	@AfterClass
+	public static void end() {
+		System.out.println("测试结束");
 	}
 }
