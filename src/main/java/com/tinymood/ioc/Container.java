@@ -41,6 +41,14 @@ public interface Container {
 	public Object registerBean(String name, Object bean);
 	
 	/**
+	 * 注册一个带名称的Bean到容器中
+	 * @param name
+	 * @param clazz
+	 * @return
+	 */
+	public Object registerBean(String name, Class<?> clazz);
+	
+	/**
 	 * 删除一个bean
 	 * @param clazz
 	 */

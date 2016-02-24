@@ -37,10 +37,12 @@ public class SimpleContainer implements Container {
 
 	@Override
 	public <T> T getBeanByName(String name) {
-		Object object = beans.get(name);
+		String className = beanKeys.get(name);
+		Object object = beans.get(className);
+		
 		if (null != object) {
 			return (T) object;
-		}
+		} 
 		return null;
 	}
 
@@ -73,6 +75,16 @@ public class SimpleContainer implements Container {
 	}
 
 	@Override
+	public Object registerBean(String name, Class<?> clazz) {
+		String className = clazz.getName();
+		beanKeys.put(name, className);
+		Object bean = ReflectUtil.newInstance(clazz);
+		beans.put(className, bean);
+		
+		return bean;
+	}
+	
+	@Override
 	public void remove(Class<?> clazz) {
 		String className = clazz.getName();
 		if (null != className && !className.equals("")) {
@@ -94,7 +106,7 @@ public class SimpleContainer implements Container {
 	public Set<String> getBeanNames() {
 		return beanKeys.keySet();
 	}
-
+	
 	@Override
 	public void initWired() {
 		Iterator<Map.Entry<String, Object>> it = beans.entrySet().iterator();
@@ -167,4 +179,6 @@ public class SimpleContainer implements Container {
 		}
 		return null;
 	}
+
+	
 }
