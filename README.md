@@ -9,7 +9,7 @@ IOC源码：[https://github.com/lemonjing/easy-ioc](https://github.com/lemonjing
 
 ## 目录
 
-* [IOC的概念](1.concept.md)
-* [Spring中怎么用](2.spring.md)
-* [设计一个IOC](3.myioc.md)
-* [原理分析](4.principle.md)
+* [IOC的概念](docs/1.concept.md)
+* [Spring中怎么用](docs/2.spring.md)
+* [设计一个IOC](docs/3.myioc.md)
+* [原理分析](docs/4.principle.md)
